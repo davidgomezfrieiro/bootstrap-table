@@ -18,16 +18,26 @@
 <body>
   <h1>Estadísticas Covid</h1>
 
+  <div id="toolbar" class="select">
+    <select class="form-control">
+      <option value="">Export Basic</option>
+      <option value="all">Export All</option>
+      <option value="selected">Export Selected</option>
+    </select>
+  </div>
+
   <table data-toggle="table" data-url= "https://corona.lmao.ninja/v3/covid-19/countries/Spain%2C%20Italy%2C%20Germany%2C%20Poland%2C%20Finland">
     <thead>
       <tr>
         <th data-field="country">País</th>
         <th data-field="population">Población Total</th>
-        <th data-field="casesPerOneMillion" data-sortable="true">Casos activos por millón de habitantes</th>
+        <th data-field="casesPerOneMillion" data-sortable="true" data-cell-style="cellStyle">Casos activos por millón de habitantes</th>
         <th data-field="updated"  data-formatter="dateFormatter">Última actualización de los datos</th>
       </tr>
     </thead>
   </table>
+
+  
 
   <script src="https://code.jquery.com/jquery-3.6.0.js"
   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -36,12 +46,30 @@
     integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+  
+
 
   <script>
+    let warningCases = 10000
+    
     function dateFormatter(value) {
       var timestamp = value;
       var date = new Date(timestamp);
     return "Última actualización: " + date
+  }
+
+  function cellStyle(value, row, index) {
+
+    if (value < warningCases) {
+
+      return {
+        classes: 'bg-success'
+      }
+    }
+
+    return {
+      classes: 'bg-warning'
+    }
   }
   </script>
 
