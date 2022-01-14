@@ -24,7 +24,7 @@
         <th data-field="country">País</th>
         <th data-field="population">Población Total</th>
         <th data-field="casesPerOneMillion" data-sortable="true">Casos activos por millón de habitantes</th>
-        <th data-field="updated" data-formatter="dateFormat">Última actualización de los datos</th>
+        <th data-field="updated"  data-formatter="dateFormatter">Última actualización de los datos</th>
       </tr>
     </thead>
   </table>
@@ -36,6 +36,14 @@
     integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+
+  <script>
+    function dateFormatter(value) {
+      var timestamp = value;
+      var date = new Date(timestamp);
+    return "Última actualización: " + date
+  }
+  </script>
 
 </body>
 
